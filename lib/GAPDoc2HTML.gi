@@ -92,7 +92,7 @@ GAPDoc2HTMLProcs.TextAttr.GAPinput :=
 
 # like in Text converter, but a heading and an address are not a paragraph here
 GAPDoc2HTMLProcs.ParEls := 
-[ "Display", "Example", "Log", "Listing", "List", "Enum", "Item", "Table", 
+[ "Display", "Example", "Log", "Listing", "List", "Enum", "Item", "Table", "Admonition",
   "TitlePage", "Abstract", "Copyright", "Acknowledgements",
   "Colophon", "TableOfContents", "Bibliography", "TheIndex",
   "Subsection", "ManSection", "Description", "Returns", "Section",
@@ -2124,6 +2124,37 @@ GAPDoc2HTMLProcs.Row := function(r, str, al)
   Append(str, "</tr>\n");
 end;
 
+GAPDoc2HTMLProcs.Admonition := function(r, par)
+  local str, cap, tmp, pars, i;
+
+  str := "\n<aside class=\"admonition ";
+  Append(str, LowercaseString(r.attributes.Type));
+  Append(str, "\">");
+
+  # Title
+  Append(str, "\n<p class=\"admonition-title\">");
+  # Optional custom title
+  cap := Filtered(r.content, a-> a.name = "Caption");
+  if Length(cap) > 0 then
+    tmp := "";
+    GAPDoc2HTMLContent(cap[1], tmp);
+    Append(str, tmp);
+  else
+    Append(str, r.attributes.Type);
+  fi;
+  Append(str, "</p>\n");
+
+  pars := "";
+  GAPDoc2HTMLContent(r, pars);
+  for i in [1..Length(pars)/2] do
+    Append(str, pars[i*2]);
+  od;
+
+  Append(str, "</aside>\n\n");
+
+  Add(par, r.count);
+  Add(par, str);
+end;
 
 ##  
 ##  <#GAPDoc Label="GAPDoc2HTMLPrintHTMLFiles">

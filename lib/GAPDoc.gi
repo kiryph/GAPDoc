@@ -95,6 +95,7 @@ InstallGlobalFunction(CheckAndCleanGapDocTree, function(arg)
                  = "XML") or c.name in 
               GAPDOCDTDINFO[pos].content);
     if false in l then
+      Print(GAPDOCDTDINFO[pos].content);
       ParseError(str, r.start, Concatenation("Wrong element in ", 
                       name, ": ", r.content[Position(l, false)].name));
     fi;

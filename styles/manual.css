@@ -477,6 +477,74 @@ span.BibNote {
 span.BibHowpublished {
 }
 
+/* Originally from a SASS file using @mixin, @include, nesting &, darken/lighten, variables*/
+.admonition {
+  padding: 0 15px;
+  margin-bottom: 20px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  text-align: left;
+}
 
-
-
+.admonition > div.example {
+  margin-bottom: 20px;
+}
+.admonition-title {
+  font-weight: bold;
+  text-align: left;
+}
+.admonition.note {
+  --base-blue: #3498db;
+  /* background-color: #cce5f6; */
+  border-color: #3498db;
+}
+.admonition.note > .admonition-title {
+  color: #1d6fa5;
+}
+.admonition.note > .admonition-title > code {
+  color: #1d6fa5;
+}
+.admonition.tip {
+  --base-green: #46aa63;
+  /* background-color: #bee4c9; */
+  border-color: #46aa63;
+}
+.admonition.tip > .admonition-title {
+  color: #307443;
+}
+.admonition.tip > .admonition-title > code {
+  color: #307443;
+}
+.admonition.warning {
+  --base-carrot: #e67e22;
+  /* background-color: #f8dcc2; */
+  border-color: #e67e22;
+}
+.admonition.warning > .admonition-title {
+  color: #a85913;
+}
+.admonition.warning > .admonition-title > code {
+  color: #a85913;
+}
+.admonition.important {
+  --base-violet: #7200a3;
+  /* background-color: #cc57ff; */
+  border-color: #7200a3;
+}
+.admonition.important > .admonition-title {
+  color: #3c0057;
+}
+.admonition.important > .admonition-title > code {
+  color: #3c0057;
+}
+.admonition.caution {
+  --base-alizarin: #e74c3c;
+  /* background-color: #fbdedb; */
+  border-color: #e74c3c;
+}
+.admonition.caution > .admonition-title {
+  color: #bf2718;
+}
+.admonition.caution > .admonition-title > code {
+  color: #bf2718;
+}

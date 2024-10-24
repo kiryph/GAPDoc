@@ -243,7 +243,7 @@
      environments like enumerations, lists, and such.
      ================================================================== -->
 
-<!ENTITY % Text "%InnerText; | List | Enum | Table">
+<!ENTITY % Text "%InnerText; | List | Enum | Table | Admonition">
 
 <!ELEMENT Item ( %Text;)*>
 <!ELEMENT Mark ( %InnerText;)*>
@@ -264,6 +264,13 @@
 <!ELEMENT Row   ( Item+ )>
 <!ELEMENT HorLine EMPTY>
 <!ELEMENT Caption ( %InnerText;)*>
+
+<!ELEMENT Admonition (%Text;| Caption)*>
+<!--<!ATTLIST Admonition Type (Note|Tip|Important|Warning|Caution|Quote) #REQUIRED
+  GAP/GAPDoc does not have a proper dtd parser which understands "enumerated attribute values"
+      -->
+<!ATTLIST Admonition Type CDATA #REQUIRED
+                     Label CDATA #IMPLIED>    <!-- For reference purposes -->
 
 <!-- ==================================================================
      We start defining some things within the overall structure:

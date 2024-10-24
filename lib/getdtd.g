@@ -41,7 +41,7 @@ od;
 pos := PositionSublist(dtd, "% InnerText");
 pos2 := Position(dtd, '>', pos);
 innertxt := WordsString(dtd{[pos+13..pos2]});
-txt := Concatenation(innertxt, [ "Enum", "List", "Table" ]);
+txt := Concatenation(innertxt, [ "Enum", "List", "Table", "Admonition" ]);
 ssent := [ "Subsection", "ManSection" ];
 
 for x in elements do 

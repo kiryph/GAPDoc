@@ -152,7 +152,7 @@ GAPDoc2TextProcs.TextAttr.f();
 Unbind(GAPDoc2TextProcs.TextAttr.f);
 
 GAPDoc2TextProcs.ParEls := 
-[ "Display", "Example", "Log", "Listing", "List", "Enum", "Item", "Table",
+[ "Display", "Example", "Log", "Listing", "List", "Enum", "Item", "Table", "Admonition",
 "TitlePage", "Address", "TitleComment", "Abstract", "Copyright",
 "Acknowledgements", "Colophon", "TableOfContents", "Bibliography", "TheIndex",
 "Subsection", "ManSection", "Description", "Returns", "Section", "Chapter",
@@ -1984,6 +1984,63 @@ GAPDoc2TextProcs.Caption1 := function(r, str)
   GAPDoc2TextContent(r, s);
   Append(str, FormatParagraph(s, r.root.linelength - 10, 
                                 "both", ["     ", ""], WidthUTF8String));
+end;
+
+GAPDoc2TextProcs.Admonition := function(r, s)
+  local str, cap, tmp, color;
+
+  if UserPreference("UseColorsInTerminal") then
+    # TODO define and use TextThemes
+    # Using ANSI Colors
+    if r.attributes.Type = "Note" then
+      color := TextAttr.4; # Blue
+    elif  r.attributes.Type = "Tip" then
+      color := TextAttr.2; # Green
+    elif  r.attributes.Type = "Important" then
+      color := TextAttr.5; # Magenta
+    elif  r.attributes.Type = "Warning" then
+      color := TextAttr.3; # Yellow
+    elif  r.attributes.Type = "Caution" then
+      color := TextAttr.1; # Red
+    fi;
+  else
+    color := "";
+  fi;
+
+  # Title
+  # with optional custom caption
+  tmp := Filtered(r.content, a -> a.name = "Caption");
+  if Length(tmp) > 0 then
+    cap := "";
+    GAPDoc2TextContent(tmp[1], cap);
+  else
+    cap := r.attributes.Type; # default
+  fi;
+
+  str := Concatenation(r.root.indent,
+                       GAPDoc2TextProcs.TextAttr.FillString[1],
+                       "  ", cap, "  ",
+                       GAPDoc2TextProcs.TextAttr.FillString[1]);
+  str := WrapTextAttribute(str, color);
+  Add(str, '\n');
+
+  # Body
+  GAPDoc2TextContent(r, str);
+
+  # Following does not help to avoid an additional line:
+  # the addition of the empty line happens within most likely in
+  # GAPDoc2TextContent
+  # str := StripBeginEnd(str, WHITESPACE);
+  # str := Chomp(str);
+
+  # Finish
+  Append(str, Concatenation(r.root.indent,
+                 WrapTextAttribute(GAPDoc2TextProcs.TextAttr.FillString[1], 
+                 color), 
+                 "\n\n"));
+
+  Add(s, r.count);
+  Add(s, str);
 end;
 
 ##  
