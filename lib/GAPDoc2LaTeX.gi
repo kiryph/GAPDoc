@@ -245,7 +245,12 @@ GAPDoc2LaTeXProcs.DefaultOptions := rec(
              gapinput := "0.589,0.0,0.0",
              gapoutput := "0.0,0.0,0.0",
              funcdefs := "0.0,0.0,0.0",
-             chapter := "0.0,0.0,0.0"
+             chapter := "0.0,0.0,0.0",
+             admonition_note := "0.204,0.596,0.859", # blue
+             admonition_tip := "0.275,0.667,0.388", # green
+             admonition_important := "0.447,0.0,0.639", # magenta
+             admonition_warning := "0.902,0.494,0.133", # orange
+             admonition_caution := "0.906,0.298,0.235" # red
              ),
   MoreColors := "\\definecolor{DarkOlive}{rgb}{0.1047,0.2412,0.0064}\n",
   FontPackages := "\\usepackage{mathptmx,helvet}\n\\usepackage[T1]{fontenc}\n\
@@ -312,8 +317,13 @@ SetGapDocLaTeXOptions := function(arg)
              gapinput := "0.0,0.0,0.0",
              gapoutput := "0.0,0.0,0.0",
              funcdefs := "0.0,0.0,0.0",
-             chapter := "0.0,0.0,0.0"
-                        ) ) );
+             chapter := "0.0,0.0,0.0",
+             admonition_note := "0.0,0.0,0.0",
+             admonition_tip := "0.0,0.0,0.0",
+             admonition_important := "0.0,0.0,0.0",
+             admonition_warning := "0.0,0.0,0.0",
+             admonition_caution := "0.0,0.0,0.0"
+    ) ) );
   fi;
   if "utf8" in arg then
     Add(recs, rec(InputEncoding := "utf8"));
@@ -1529,6 +1539,49 @@ GAPDoc2LaTeXProcs.Alt := function(r, str)
   fi;
   GAPDoc2LaTeXProcs.recode := true;
   GAPDoc2LaTeXProcs.verbatimPCDATA := false;
+end;
+
+GAPDoc2LaTeXProcs.Admonition := function(r, str)
+  local color, cap, tmp;
+  color := Concatenation("admonition", r.attributes.Type);
+
+  # Start center environment \fcolorbox{linecolor}{fillcolor} and
+  # \parbox{width}{paragraph}
+  Append(str, "\n\n\\begin{center}\n");
+  Append(str, "\\setlength\\fboxsep{8pt}\n");
+  Append(str, "\\setlength\\fboxrule{1pt}\n");
+  Append(str, "\\VerbBox{\\fcolorbox{");
+  Append(str, color);
+  Append(str, "}{white}}{%\n");
+  # Append(str, "\\parbox{\\dimexpr\\linewidth-3\\fboxsep}{");
+  Append(str, "\\begin{minipage}{\\dimexpr\\linewidth-2.2\\fboxsep}\n");
+
+  # Title
+  Append(str, "\\textcolor{");
+  Append(str, color);
+  Append(str, "}{\\textbf{");
+  cap := Filtered(r.content, a-> a.name = "Caption");
+  if Length(cap) > 0 then
+    tmp := "";
+    GAPDoc2LaTeXContent(cap[1], tmp);
+    Append(str, tmp);
+  else
+    Append(str, r.attributes.Type);
+  fi;
+  Append(str, "}}\\\\[1ex]\n");
+
+  # Body
+  Append(str, "\\setlength\\fboxrule{0.4pt}\n"); # reset to default for innner boxes
+  # TODO handle nested verbatims like Example, Log
+  # iterate over paragraphs and handle verbcontent
+  # Requires a boxing which allows verbatim:
+  # fancybox, realboxes, mdframed, tcolorbox
+  # GAPDoc2LaTeXProcs.verbcontent(r, true); % special case
+  # Append(str, "\\fvset{vspace=3ex,listparameters=\\setlength{\\topsep}{3ex}\\setlength{\\parsep}{3ex}}"); # default of vspace is \topsep
+  GAPDoc2LaTeXContent(r, str);
+
+  # Close \VerbBox\fcolorbox, minipage/\parbox and center environment
+  Append(str, "\\end{minipage}}\\end{center}");
 end;
 
 # copy a few entries with two element names

@@ -512,15 +512,120 @@ And some more for mathematical symbols:
 
 </Section>
 
+<Section><Heading>Admonition Boxes</Heading>
+<Label Name="ElevenBack"/>
+
+[&see; <Ref Sect="Eleven"/>]<P/>
+
+Five types of admonition boxes:<P/>
+
+<Admonition Type="Note">
+Useful information that users should know, even when skimming content.
+</Admonition>
+
+<Admonition Type="Tip">
+Helpful advice for doing things better or more easily.
+</Admonition>
+
+<Admonition Type="Important">
+Key information users need to know to achieve their goal.
+</Admonition>
+
+<Admonition Type="Warning">
+Urgent info that needs immediate user attention to avoid problems.
+</Admonition>
+
+<Admonition Type="Caution">
+Advises about risks or negative outcomes of certain actions.
+</Admonition>
+
+Custom captions:<P/>
+
+<Admonition Type="Important">
+<Caption>Important: Custom Caption</Caption>
+Key information users need to know to achieve their goal.
+</Admonition>
+
+Other <Package>GAPDoc</Package> elements within admonition boxes are allowed:<P/>
+
+<Admonition Type="Note">
+<Caption>A note with <C>Log</C></Caption>
+An example with syntax highlighting:
+<Br/><Ignore> manually fixing space</Ignore>
+<Log>
+gap&gt; Sieve(100);
+[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61,
+  67, 71, 73, 79, 83, 89, 97 ]
+gap&gt; Length(last);
+25
+</Log>
+</Admonition>
+
+<Admonition Type="Note">
+<Caption>A note with various <Package>GAPDoc</Package> elements</Caption>
+
+A word with quotation marks: <Q>hello</Q>.
+
+Display Math:
+
+<Display>
+   \Longrightarrow \quad \left(\sum_{i=1}^d x_i b_i \right) \cdot
+   \left(\sum_{j=1}^d y_j b_j \right) =
+   \sum_{k=1}^d \left( \sum_{i,j} x_i y_j h_{ijk} \right) b_k 
+</Display>
+
+Tables can be used within admonition boxes:
+<Br/><Ignore> manually fixing space</Ignore>
+<Table Align="|l|l|">
+<Caption>Predefined Entities in the &GAPDoc; system</Caption>
+<HorLine/>
+<Row> <Item><C>&amp;GAP;</C></Item>       <Item>&GAP;</Item> </Row>
+<HorLine/>
+<Row> <Item><C>&amp;GAPDoc;</C></Item>    <Item>&GAPDoc;</Item> </Row>
+<HorLine/>
+<Row> <Item><C>&amp;TeX;</C></Item>       <Item>&TeX;</Item> </Row>
+<HorLine/>
+<Row> <Item><C>&amp;LaTeX;</C></Item>     <Item>&LaTeX;</Item> </Row>
+<HorLine/>
+</Table>
+
+Lists or enumerations can be used within admonition boxes
+<List>
+  <Item>
+    <Emph>This</Emph> is <E>emphasized</E>.
+  </Item>
+  <Item>
+   <E>Keywords</E> are typeset like <Keyword>this</Keyword> and <K>that</K>.
+  </Item>
+</List>
+
+<List>
+ <Mark>lists:</Mark><Item> not numbered</Item>
+ <Mark>enumerations:</Mark><Item> numbered</Item>
+ <Mark>tables:</Mark><Item> two-dimensional</Item>
+</List>
+
+<Enum>
+  <Item>
+    <Emph>This</Emph> is <E>emphasized</E>.
+  </Item>
+  <Item>
+   <E>Keywords</E> are typeset like <Keyword>this</Keyword> and <K>that</K>.
+  </Item>
+</Enum>
+</Admonition>
+
+</Section>
+
 </Chapter>
 
 </Body>
 
 <Appendix Label="Appendix">
 <Heading>An Appendix</Heading>
-<Label Name="ElevenBack"/>
+<Label Name="TwelveBack"/>
 
-[&see; <Ref Sect="Eleven"/>]<P/>
+[&see; <Ref Sect="Twelve"/>]<P/>
 
 This is an appendix. 
 </Appendix>
@@ -1078,6 +1183,119 @@ And here are the predefined entities in &GAPDoc;:
 And some more for mathematical symbols: 
 &CC;, &ZZ;, &NN;, &PP;, &QQ;, &HH;, &RR;.
 
+</Section>]]>
+</Listing>
+
+</Section>
+
+<Section Label="Eleven"><Heading>Admonition Boxes (Source)</Heading>
+
+[<Ref Label="ElevenBack"/>]
+
+<Listing>
+<![CDATA[<Section><Heading>Admonition Boxes</Heading>
+<Label Name="ElevenBack"/>
+
+[&see; <Ref Sect="Eleven"/>]<P/>
+
+Five types of admonition boxes:<P/>
+
+<Admonition Type="Note">
+Useful information that users should know, even when skimming content.
+</Admonition>
+
+<Admonition Type="Tip">
+Helpful advice for doing things better or more easily.
+</Admonition>
+
+<Admonition Type="Important">
+Key information users need to know to achieve their goal.
+</Admonition>
+
+<Admonition Type="Warning">
+Urgent info that needs immediate user attention to avoid problems.
+</Admonition>
+
+<Admonition Type="Caution">
+Advises about risks or negative outcomes of certain actions.
+</Admonition>
+
+Custom captions:<P/>
+
+<Admonition Type="Important">
+<Caption>Important: Custom Caption</Caption>
+Key information users need to know to achieve their goal.
+</Admonition>
+
+Other <Package>GAPDoc</Package> elements within admonition boxes are allowed:<P/>
+
+<Admonition Type="Note">
+<Caption>A note with <C>Log</C></Caption>
+An example with syntax highlighting:
+<Br/><Ignore> manually fixing space</Ignore>
+<Log>
+gap&gt; Sieve(100);
+[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61,
+  67, 71, 73, 79, 83, 89, 97 ]
+gap&gt; Length(last);
+25
+</Log>
+</Admonition>
+
+<Admonition Type="Note">
+<Caption>A note with various <Package>GAPDoc</Package> elements</Caption>
+
+A word with quotation marks: <Q>hello</Q>.
+
+Display Math:
+
+<Display>
+   \Longrightarrow \quad \left(\sum_{i=1}^d x_i b_i \right) \cdot
+   \left(\sum_{j=1}^d y_j b_j \right) =
+   \sum_{k=1}^d \left( \sum_{i,j} x_i y_j h_{ijk} \right) b_k 
+</Display>
+
+Tables can be used within admonition boxes:
+<Br/><Ignore> manually fixing space</Ignore>
+<Table Align="|l|l|">
+<Caption>Predefined Entities in the &GAPDoc; system</Caption>
+<HorLine/>
+<Row> <Item><C>&amp;GAP;</C></Item>       <Item>&GAP;</Item> </Row>
+<HorLine/>
+<Row> <Item><C>&amp;GAPDoc;</C></Item>    <Item>&GAPDoc;</Item> </Row>
+<HorLine/>
+<Row> <Item><C>&amp;TeX;</C></Item>       <Item>&TeX;</Item> </Row>
+<HorLine/>
+<Row> <Item><C>&amp;LaTeX;</C></Item>     <Item>&LaTeX;</Item> </Row>
+<HorLine/>
+</Table>
+
+Lists or enumerations can be used within admonition boxes
+<List>
+  <Item>
+    <Emph>This</Emph> is <E>emphasized</E>.
+  </Item>
+  <Item>
+   <E>Keywords</E> are typeset like <Keyword>this</Keyword> and <K>that</K>.
+  </Item>
+</List>
+
+<List>
+ <Mark>lists:</Mark><Item> not numbered</Item>
+ <Mark>enumerations:</Mark><Item> numbered</Item>
+ <Mark>tables:</Mark><Item> two-dimensional</Item>
+</List>
+
+<Enum>
+  <Item>
+    <Emph>This</Emph> is <E>emphasized</E>.
+  </Item>
+  <Item>
+   <E>Keywords</E> are typeset like <Keyword>this</Keyword> and <K>that</K>.
+  </Item>
+</Enum>
+</Admonition>
+
 </Section>
 
 </Chapter>
@@ -1088,9 +1306,9 @@ And some more for mathematical symbols:
 </Section>
 
 
-<Section Label="Eleven"><Heading>Appendix (Source)</Heading>
+<Section Label="Twelve"><Heading>Appendix (Source)</Heading>
 
-[<Ref Label="ElevenBack"/>]
+[<Ref Label="TwelveBack"/>]
 
 <Listing Type="GAPDoc source">
 <![CDATA[<Appendix><Heading>An Appendix</Heading>

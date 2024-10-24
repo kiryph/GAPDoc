@@ -1338,6 +1338,48 @@ It may appear in the output.
 
 </Subsection>
 
+<Subsection Label="Admonition"><Heading><C>&lt;Admonition></C></Heading>
+<Index Key="Admonition"><C>Admonition</C></Index>
+
+<Listing Type="From gapdoc.dtd">
+<![CDATA[<!ELEMENT Admonition (%Text;| Caption)*>
+<!ATTLIST Admonition Type CDATA #REQUIRED
+                Label CDATA #IMPLIED>]]>
+</Listing>
+
+Five types of admonition boxes
+<Log><![CDATA[
+<Admonition Type="Note">
+  Useful information that users should know, even when skimming content.
+</Admonition>
+
+<Admonition Type="Tip">
+  Helpful advice for doing things better or more easily.
+</Admonition>
+
+<Admonition Type="Important">
+  Key information users need to know to achieve their goal.
+</Admonition>
+
+<Admonition Type="Warning">
+  Urgent info that needs immediate user attention to avoid problems.
+</Admonition>
+
+<Admonition Type="Caution">
+  Advises about risks or negative outcomes of certain actions.
+</Admonition>
+]]></Log>
+
+It is possible to customize the caption:
+
+<Log><![CDATA[
+<Admonition Type="Important">
+  <Caption>Important: Custom Caption</Caption>
+  This is important.
+</Admonition>
+]]></Log>
+
+</Subsection>
 
 <Subsection Label="Log"><Heading><C>&lt;Log></C> and
                                  <C>&lt;Example></C></Heading>
