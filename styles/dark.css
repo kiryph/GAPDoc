@@ -237,3 +237,7 @@ span.BibKey {
 .only-on-light {
   display: none;
 }
+
+fieldset.example {
+  border-color: var(--gd-fg);;
+}

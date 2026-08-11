@@ -56,6 +56,7 @@ pre {
   font-family: "Courier New",Courier,monospace; 
   font-size: 100%; 
   color:#111111; 
+  overflow: auto;
 }
 
 tt,code { 
@@ -187,6 +188,14 @@ div.chlinkprevnextbot {
 
 div.chlinkprevnextbot a:hover {
   background: #ffffff;
+}
+
+fieldset.example {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  min-inline-size: calc(100% - 30px);
+  border-width: 1px;
+  border-color: #000000;
 }
 
 

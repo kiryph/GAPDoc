@@ -1426,7 +1426,11 @@ end;
 
 GAPDoc2HTMLProcs.ExampleLike := function(r, par, label, colorpr)
   local   str,  cont,  a,  s;
-  str := "\n<div class=\"example\"><pre>";
+  str := "\n<fieldset class=\"example\">\n";
+  Append(str, "<legend align=\"center\">");
+  Append(str, label);
+  Append(str, "</legend>\n");
+  Append(str, "<pre>");
   cont := "";
   for a in r.content do 
     # here we try to avoid reformatting
@@ -1442,7 +1446,7 @@ GAPDoc2HTMLProcs.ExampleLike := function(r, par, label, colorpr)
     cont := GAPDoc2HTMLProcs.AddColorPromptMarkup(cont);
   fi;
   Append(str, cont);
-  Append(str, "</pre></div>\n\n");
+  Append(str, "</pre></fieldset>\n\n");
   Add(par, r.count);
   Add(par, str);
 end;
